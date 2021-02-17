@@ -1,0 +1,29 @@
+{
+  "name": "109-100-xinzhu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/plugin-transform-runtime": "^7.12.15",
+    "@babel/preset-env": "^7.12.16",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.13",
+    "@babel/runtime-corejs2": "^7.12.13",
+    "@babel/runtime-corejs3": "^7.12.13",
+    "bootstrap": "^5.0.0-beta2",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}
