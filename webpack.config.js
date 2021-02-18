@@ -1,10 +1,15 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// 載入 html-webpack-plugin (第一步)
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); 
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'static/js/[name].[hash].js',
   },
   module: {
     rules: [
@@ -22,6 +27,8 @@ module.exports = {
         use: [{
           loader: 'style-loader', // inject CSS to page
         }, {
+          loader: MiniCssExtractPlugin.loader,
+        },{
           loader: 'css-loader', // translates CSS into CommonJS modules
         }, {
           loader: 'postcss-loader', // Run post css actions
@@ -39,5 +46,8 @@ module.exports = {
       },
     ],
   },
-  
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+  ],
 };
