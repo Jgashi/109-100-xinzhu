@@ -1,15 +1,28 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// 載入 html-webpack-plugin (第一步)
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack'); 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack'); 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 module.exports = {
+  devtool: 'source-map',
   mode: 'development',
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'static/js/[name].[hash].js',
+    filename: 'js/[name].[hash].js',
+    // chunkFilename: (pathData) => {
+    //   return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
+    // },
+    // chunkLoading: 'async-node',
+  },
+  devServer: {
+    hot: true,
+    port: 9000,
+    open: true,
   },
   module: {
     rules: [
@@ -23,31 +36,57 @@ module.exports = {
         },
       },
       {
-        test: /\.(scss)$/,
+        test: /\.s[ac]ss$/i,
         use: [{
-          loader: 'style-loader', // inject CSS to page
+          //將js字串生成為 style節點
+          loader: 'style-loader',
+        }, 
+        // {
+        //   loader: MiniCssExtractPlugin.loader,
+        // }, 
+        {
+          //將 css轉化成 CommonJS 模塊
+          loader: 'css-loader',
         }, {
-          loader: MiniCssExtractPlugin.loader,
-        },{
-          loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
-          loader: 'postcss-loader', // Run post css actions
+          loader: 'postcss-loader',
           options: {
-            plugins: function () { // post css plugins, can be exported to postcss.config.js
+            plugins: function () { 
               return [
-                require('precss'),
                 require('autoprefixer')
               ];
-            }
+            },
           }
         }, {
-          loader: 'sass-loader' // compiles Sass to CSS
+          //將 Sass 編譯成 CSS
+          loader: 'sass-loader',
+          options: {
+            // `dart-sass` 是首选
+            implementation: require("sass"),
+            sassOptions: {
+              fiber: false,
+            },
+          },
         }]
       },
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'//這邊以上是新增
+    }),
     new webpack.ProgressPlugin(),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html' 
+    }),
+    new CleanWebpackPlugin(),
   ],
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 200,
+    ignored: /node_modules/,
+  },
 };
