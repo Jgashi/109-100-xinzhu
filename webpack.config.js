@@ -1,8 +1,10 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack'); 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const LinkTypePlugin = require('html-webpack-link-type-plugin').HtmlWebpackLinkTypePlugin;
+
 
 
 module.exports = {
@@ -13,13 +15,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'dist',
-    filename: 'js/[name]-[hash].js',
-    chunkFilename: "[id].chunk.js",
-    // chunkFilename: (pathData) => {
-    //   return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
-    // },
-    // chunkLoading: 'async-node',
+    // publicPath: 'dist',
+    filename: 'js/[name]-[fullhash].js',
   },
   devServer: {
     hot: true,
@@ -56,6 +53,7 @@ module.exports = {
             postcssOptions: {
               plugins: [
                 [
+                  "precss",
                   "autoprefixer",
                 ],
               ],
@@ -76,16 +74,20 @@ module.exports = {
     ],
   },
   plugins: [
+    new LinkTypePlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'//這邊以上是新增
     }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[fullhash].css',
+      filename: './app/style.css',
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    new LinkTypePlugin({
+      '**/*.css' : 'text/css'
     }),
     new CleanWebpackPlugin(),
   ],
