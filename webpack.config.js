@@ -13,7 +13,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/[name].[hash].js',
+    publicPath: 'dist',
+    filename: 'js/[name]-[hash].js',
+    chunkFilename: "[id].chunk.js",
     // chunkFilename: (pathData) => {
     //   return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
     // },
@@ -80,10 +82,10 @@ module.exports = {
     }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].css',
+      filename: 'css/[name].[fullhash].css',
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html' 
+      template: './src/index.html',
     }),
     new CleanWebpackPlugin(),
   ],
