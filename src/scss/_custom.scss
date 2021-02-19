@@ -1,23 +1,44 @@
-// // Required
-// @import "../node_modules/bootstrap/scss/functions";
-// @import "../node_modules/bootstrap/scss/variables";
-// @import "../node_modules/bootstrap/scss/mixins";
+$colors: (
+  fill: #a972cb,
+  pulse: #ef6eae, 
+  close: #ff7f82, 
+  raise: #f73636, 
+  up: #e4cb58, 
+  slide: #8fc866, 
+  offset: #19bc8b
+);
 
-// // Your variable overrides
-$body-bg: #000;
-$body-color: #111;
-// body{
-//   background-color: red;
-// }
-// .text-primary {
-//   color: #2525b1;
-// }
-// // Bootstrap and its default variables
+@each $button, $color in $colors {
+  .#{$button} {
+    --color: #{$color};
+    --hover: #{adjust-hue($color, 10deg)};
+  }
+};
 
-// // Optional
-// @import "../node_modules/bootstrap/scss/root";
-// @import "../node_modules/bootstrap/scss/reboot";
-// @import "../node_modules/bootstrap/scss/type";
-// @import "../node_modules/bootstrap/scss/images";
-// @import "../node_modules/bootstrap/scss/containers";
-// @import "../node_modules/bootstrap/scss/grid";
+body{
+  text-align: center;
+}
+
+a{
+  display: block;
+  text-decoration: none;
+}
+
+.card-body{
+  background-color: #ff8c8c;
+}
+
+.card-title{
+  font-weight: bolder;
+  cursor: default;
+}
+
+.card-subtitle{
+  font-weight: bolder;
+  color: black;
+  background-color: white;
+  &:hover{
+    color: white;
+    background-color: #fa4646;
+  }
+}
