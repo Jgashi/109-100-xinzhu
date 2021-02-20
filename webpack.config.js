@@ -40,6 +40,18 @@ module.exports = {
     ],
     extensions: ['.js']
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vender: {
+          test: /node_modules/,
+          name: 'vender',
+          chunks: 'initial',
+          enforce: true,
+        }
+      }
+    }
+  },
   module: {
     rules: [
       // 配置 babel-loader (第一步)
@@ -108,14 +120,14 @@ module.exports = {
       filename: 'index.html',
       template: 'html/portal.html',
       viewport: 'width=device-width, initial-scale=1.0',
-      chunks: ['main'],
+      chunks: ['vender','main'],
     }),
     new HtmlWebpackPlugin({
       title: '新竹後台入口網站-子系統選單',
       filename: 'subsystem.html',
       template: 'html/subsystem.html',
       viewport: 'width=device-width, initial-scale=1.0',
-      chunks: ['subsystem'],
+      chunks: ['vender','subsystem'],
     }),
   ],
   // watch: true,
