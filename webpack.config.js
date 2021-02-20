@@ -20,6 +20,9 @@ module.exports = {
   },
   devServer: {
     hot: true,
+    contentBase: path.join(__dirname, 'dist'),
+    stats: 'errors-only',
+    compress: true,
     port: 9000,
     open: true,
   },
@@ -74,24 +77,23 @@ module.exports = {
     ],
   },
   plugins: [
-    new LinkTypePlugin(),
+    new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'//這邊以上是新增
     }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({
-      filename: './app/style.css',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
+      filename: './css/[name]-[fullhash].css',
     }),
     new LinkTypePlugin({
       '**/*.css' : 'text/css'
     }),
-    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
   ],
-  watch: true,
+  // watch: true,
   watchOptions: {
     aggregateTimeout: 200,
     ignored: /node_modules/,
