@@ -23,7 +23,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     stats: 'errors-only',
     compress: true,
-    port: 9000,
+    // port: 9000,
     open: true,
   },
   module: {
@@ -77,6 +77,8 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin({
+    }),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
