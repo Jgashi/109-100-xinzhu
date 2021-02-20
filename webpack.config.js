@@ -62,6 +62,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+        include: path.resolve('.'),
       },
       {
         test: /\.s[ac]ss$/i,
@@ -98,7 +99,9 @@ module.exports = {
               fiber: false,
             },
           },
-        }]
+        }],
+        include: path.resolve('src/scss'),
+        exclude: path.resolve('./node_modules'),
       },
     ],
   },
