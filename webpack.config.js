@@ -8,7 +8,7 @@ const LinkTypePlugin = require('html-webpack-link-type-plugin').HtmlWebpackLinkT
 
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   mode: 'development',
   context: path.resolve(__dirname, "./src"),
   entry: {
