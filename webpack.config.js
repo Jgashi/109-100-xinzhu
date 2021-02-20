@@ -12,8 +12,8 @@ module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, "./src"),
   entry: {
-    main: './main',
-    subsystem: './subsystem',
+    main: 'main',
+    subsystem: 'subsystem',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -27,6 +27,18 @@ module.exports = {
     compress: true,
     // port: 9000,
     open: true,
+  },
+  resolve: {
+    modules: [
+      path.resolve('src'),
+      path.resolve('src/js'),
+      path.resolve('src/js/object'),
+      path.resolve('src/scss'),
+      path.resolve('src/images'),
+      path.resolve('src/assets'),
+      path.resolve('node_modules')
+    ],
+    extensions: ['.js']
   },
   module: {
     rules: [
