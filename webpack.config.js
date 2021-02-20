@@ -10,8 +10,10 @@ const LinkTypePlugin = require('html-webpack-link-type-plugin').HtmlWebpackLinkT
 module.exports = {
   devtool: 'source-map',
   mode: 'development',
+  context: path.resolve(__dirname, "./src"),
   entry: {
-    main: './src/main.js',
+    main: './main',
+    subsystem: './subsystem',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -77,8 +79,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin({
-    }),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -92,7 +92,18 @@ module.exports = {
       '**/*.css' : 'text/css'
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      title: '新竹後台入口網站',
+      filename: 'index.html',
+      template: 'html/portal.html',
+      viewport: 'width=device-width, initial-scale=1.0',
+      chunks: ['main'],
+    }),
+    new HtmlWebpackPlugin({
+      title: '新竹後台入口網站-子系統選單',
+      filename: 'subsystem.html',
+      template: 'html/subsystem.html',
+      viewport: 'width=device-width, initial-scale=1.0',
+      chunks: ['subsystem'],
     }),
   ],
   // watch: true,
