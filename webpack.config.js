@@ -21,12 +21,27 @@ module.exports = {
     filename: 'js/[name]-[fullhash].js',
   },
   devServer: {
-    hot: true,
-    contentBase: path.join(__dirname, 'dist'),
-    stats: 'errors-only',
     compress: true,
-    // port: 9000,
     open: true,
+    hot: true,
+    // port: 9000,
+    contentBase: path.join(__dirname, 'dist'),
+    // stats: 'errors-only',
+    writeToDisk: true,
+    stats:{
+      assets: true, //加入資源訊息
+      cached: false, //加入暫存(但未建構) 模塊的訊息
+      chunks: false, //加入 chunk 訊息 (設置為`false`則允許較少的冗長輸出)
+      chunkModules: false, //將建構模塊訊息加入到chunk訊息
+      chunkOrigins: false,
+      color: true, //等同`wepack --colors`
+      hash: false,
+      modules: false,
+      reasons: false,
+      source: false,
+      version: false,
+      warnings: false
+    },
   },
   resolve: {
     modules: [
@@ -106,6 +121,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
