@@ -31,21 +31,35 @@ a{
   text-decoration: none;
 }
 
-.portal-container-card{
+.portal-container-card {
   background-color: #ff8c8c;
 }
 
-.card-title{
+.portal-container-unable {
+  background-color: lightslategray;
+}
+
+.card-title {
   font-weight: bolder;
   cursor: default;
 }
 
-.card-subtitle{
-  font-weight: bolder;
+.card-subtitle {
   color: black;
+  font-weight: bolder;
   background-color: white;
   &:hover{
     color: white;
     background-color: #e65050;
+  }
+}
+
+.card-subtitle-unable {
+  color: black;
+  font-weight: bolder;
+  background-color: lightgray;
+  cursor: not-allowed;
+  &:hover {
+    color: unset;
   }
 }
