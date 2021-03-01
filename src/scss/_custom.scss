@@ -17,6 +17,9 @@ $colors: (
 
 body{
   text-align: center;
+  background-image: url(../img/max-chen-QQu8pilYcjA-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .portal{
@@ -43,6 +46,6 @@ a{
   background-color: white;
   &:hover{
     color: white;
-    background-color: #fa4646;
+    background-color: #e65050;
   }
 }

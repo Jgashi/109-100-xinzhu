@@ -19,6 +19,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     // publicPath: 'dist',
     filename: 'js/[name]-[fullhash].js',
+    assetModuleFilename: 'img/[hash][ext][query]'
   },
   devServer: {
     compress: true,
@@ -69,6 +70,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {      
+          test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+          type: 'asset/resource',
+      },
+      {
+        test: /\.html$/,
+        use: [{
+          loader: "html-loader",
+        }]
+      },
       // 配置 babel-loader (第一步)
       {
         test: /\.m?js$/,
@@ -87,6 +98,7 @@ module.exports = {
         }, {
           loader: MiniCssExtractPlugin.loader,
           options: {
+            publicPath: '../',
             esModule: false,
           },
         }, {
@@ -95,7 +107,7 @@ module.exports = {
         }, {
           loader: 'postcss-loader',
           options: {
-            postcssOptions: {
+            postcssOptions: { 
               plugins: [
                 [
                   "precss",
