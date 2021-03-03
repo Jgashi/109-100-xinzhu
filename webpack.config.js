@@ -96,11 +96,11 @@ module.exports = {
           //將js字串生成為 style節點
           loader: 'style-loader',
         }, {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            publicPath: '../',
-            esModule: false,
-          },
+          // loader: MiniCssExtractPlugin.loader,
+          // options: {
+          //   publicPath: '../',
+          //   esModule: false,
+          // },
         }, {
           //將 css轉化成 CommonJS 模塊
           loader: 'css-loader',
