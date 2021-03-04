@@ -147,17 +147,17 @@ module.exports = {
       '**/*.css' : 'text/css'
     }),
     new HtmlWebpackPlugin({
-      title: '新竹後台入口網站',
+      // title: '新竹後台入口網站',
       filename: 'index.html',
       template: 'html/portal.html',
-      viewport: 'width=device-width, initial-scale=1.0',
+      // viewport: 'width=device-width, initial-scale=1.0',
       chunks: ['vender','main'],
     }),
     new HtmlWebpackPlugin({
-      title: '新竹後台入口網站-子系統選單',
+      // title: '新竹後台入口網站-子系統選單',
       filename: 'subsystem.html',
       template: 'html/subsystem.html',
-      viewport: 'width=device-width, initial-scale=1.0',
+      // viewport: 'width=device-width, initial-scale=1.0',
       chunks: ['vender','subsystem'],
     }),
   ],

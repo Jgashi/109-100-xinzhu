@@ -1,7 +1,7 @@
 import 'jquery';
 import 'popper.js';
 import 'bootstrap';
-import "all.scss";
+import "sub.scss";
 
 (function($) {
   "use strict"; // Start of use strict
