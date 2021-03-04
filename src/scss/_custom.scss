@@ -16,6 +16,7 @@ $colors: (
 };
 
 body {
+  text-align: center;
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
@@ -43,13 +44,6 @@ body {
     background-image: url(../img/slide-bg1.jpg);
   }
 }
-
-// body{
-//   text-align: center;
-//   background-image: url(../img/max-chen-QQu8pilYcjA-unsplash.jpg);
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
 
 .portal{
   height: 100vh;
