@@ -50,7 +50,8 @@ module.exports = {
       path.resolve('src/js'),
       path.resolve('src/js/object'),
       path.resolve('src/scss'),
-      path.resolve('src/images'),
+      // path.resolve('src/css'),
+      path.resolve('src/img'),
       path.resolve('src/assets'),
       path.resolve('node_modules')
     ],
@@ -128,6 +129,17 @@ module.exports = {
           },
         }],
         include: path.resolve('src/scss'),
+        exclude: path.resolve('./node_modules'),
+      },
+      {
+        test: /\.(wolf|wolf2|ttf|eot)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]?[hash:8]',
+          }
+        }],
+        include: path.resolve('src/webfonts'),
         exclude: path.resolve('./node_modules'),
       },
     ],
